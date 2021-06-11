@@ -7,7 +7,7 @@ public class GerenciadorTelas {
 
     public GerenciadorTelas(){
 
-        System.out.println("GerenciadorTelas");
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
     }
     
 }
