@@ -10,7 +10,7 @@ public class GerenciadorConexaoBancoDados implements I_Conexao{
 
     private static Connection conexao;
 
-
+    // CONSTRUTOR
     public void CriarConexao(EnumTiposBancosDeDados tipoBancoDeDados){
 
         switch(tipoBancoDeDados){

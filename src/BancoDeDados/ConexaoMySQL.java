@@ -19,7 +19,7 @@ public class ConexaoMySQL implements I_Conexao{
     private static final String senha = "Un8XM~6L3zJ_";
 
 
-
+    // CONSTRUTOR
     public ConexaoMySQL(){
 
         if(ConexaoMySQL.conexao == null){

@@ -13,6 +13,7 @@ public class CRUD_CategoriasIoTs {
 
     private static Connection conexao;
 
+    // CONSTRUTOR
     public CRUD_CategoriasIoTs (Connection conexao){
         CRUD_CategoriasIoTs.conexao = conexao;
     }

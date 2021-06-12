@@ -12,7 +12,8 @@ import DTOs.FabricantesIoTsDTO;
 public class CRUD_Fabricantes {
 
     private static Connection conexao;
-
+    
+    // CONSTRUTOR
     public CRUD_Fabricantes (Connection conexao){
         CRUD_Fabricantes.conexao = conexao;
     }

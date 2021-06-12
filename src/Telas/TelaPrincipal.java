@@ -5,7 +5,9 @@ import javax.swing.*;
 // import java.awt.event.*;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 
 
@@ -15,6 +17,7 @@ public class TelaPrincipal extends JFrame{
     private static JPanel areaTelaPrincipal;
     private static Container containerTelaPrincipal;
 
+    // CONSTRUTOR MONO STATE / SINGLETON
     public TelaPrincipal(){
 
         // MONO STATE / SINGLETON
@@ -54,6 +57,9 @@ public class TelaPrincipal extends JFrame{
     private void ConfigurarBarraMenus(){
 
         barraMenu = new JMenuBar();
+        // barraMenu.setBackground(new Color(0, 128, 192)); // Azul
+        barraMenu.setBackground(new Color(128, 128, 192)); // Roxo
+        barraMenu.setPreferredSize(new Dimension(0,25));
         
         JMenuItem itemMenu = null;
 
