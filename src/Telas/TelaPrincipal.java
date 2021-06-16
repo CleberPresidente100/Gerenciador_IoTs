@@ -2,32 +2,38 @@
 package Telas;
 
 import javax.swing.*;
-// import java.awt.event.*;
+
+import Enumerations.EnumNomesMenus;
+
+import java.awt.event.*;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
 
 
-public class TelaPrincipal extends JFrame{
+public class TelaPrincipal extends JFrame implements ActionListener{
 
     private static JMenuBar barraMenu;
-    private static JPanel areaTelaPrincipal;
     private static Container containerTelaPrincipal;
+    private static ArrayList<Tela>listaTelas;
 
     // CONSTRUTOR MONO STATE / SINGLETON
-    public TelaPrincipal(){
+    public TelaPrincipal(ArrayList<Tela>listaTelas){
 
         // MONO STATE / SINGLETON
         if(containerTelaPrincipal == null){
+
+            this.listaTelas = listaTelas;
 
             containerTelaPrincipal = getContentPane();
     
             ConfigurarTelaPrincipal();
             ConfigurarBarraMenus();
-            MontarTelaPrincipal();
+            MontarTelaPrincipal(null);
             ExibirTelaPrincipal();
         }
     }
@@ -63,11 +69,32 @@ public class TelaPrincipal extends JFrame{
         
         JMenuItem itemMenu = null;
 
-        JMenu menuAdministrar = new JMenu("Administrar");
+        JMenu menuAdministrar = new JMenu(EnumNomesMenus.ADMINISTAR.descricao);
         menuAdministrar.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        JMenu menuListaIoTs = new JMenu("Monitorar IoTs");
+        JMenu menuListaIoTs = new JMenu(EnumNomesMenus.MONITORAR_IOTS.descricao);
         menuListaIoTs.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+
+        // ADICONA AS TELAS NOS SEUS RESPECTIVOS MENUS
+        for (Tela tela : listaTelas) {
+
+            switch(tela.getMenu()){
+
+                case ADMINISTAR:
+                    itemMenu = new JMenuItem(tela.getNomeTela().descricao);
+                    itemMenu.addActionListener(this);
+                    menuAdministrar.add(itemMenu);
+                    break;
+
+                case MONITORAR_IOTS:
+                    itemMenu = new JMenuItem(tela.getNomeTela().descricao);
+                    itemMenu.addActionListener(this);
+                    menuListaIoTs.add(itemMenu);
+                    break;
+            }
+        }
+
 
 
         // ADICIONA OS MENUS NA BARRA DE MENUS NA ORDEM EM QUE DEVEM APARECER
@@ -77,15 +104,39 @@ public class TelaPrincipal extends JFrame{
 
 
 
-    private void MontarTelaPrincipal(){
+    private void MontarTelaPrincipal(JComponent tela){
 
         containerTelaPrincipal.setVisible(false);
+        containerTelaPrincipal.removeAll();
 
         // ADICIONA BARRA DE MENU NA TELA PRINCIPAL
         containerTelaPrincipal.add(barraMenu, BorderLayout.PAGE_START);
 
+        // ADICIONA TELA NO CORPO DA TELA PRINCIPAL
+        if(tela != null){
+
+            containerTelaPrincipal.add(tela, BorderLayout.CENTER);
+        }
+
 
         containerTelaPrincipal.setVisible(true);
+    }
+
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        System.out.println(e.getActionCommand());
+
+        for (Tela tela : listaTelas) {
+
+            if(tela.getNomeTela().descricao == e.getActionCommand()){
+
+                MontarTelaPrincipal(tela.getTela());
+                return;
+            }            
+        }
     }
     
 }
