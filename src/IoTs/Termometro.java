@@ -18,15 +18,17 @@ public class Termometro implements I_Termometro, Comparable<Termometro>{
 
 
 
-    public double getTemperatura(){
-        return termometro.Temperatura;
+    public void GerarTemperatura(){
+
+        termometro.Temperatura = 0.0;
     }
 
 
 
-    @Override
-    public void setTemperatura(double temperatura) {
-        termometro.Temperatura = temperatura;
+    public Double getTemperatura(){
+
+        GerarTemperatura();
+        return termometro.Temperatura;
     }
 
 

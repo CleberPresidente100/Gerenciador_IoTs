@@ -2,10 +2,10 @@
 package IoTs;
 
 import DTOs.LampadaDTO;
-import Interfaces.I_IoT;
+import Interfaces.I_Lampada;
 
 // A Interface Comparable é utilizada para realizar a ordenação de objetos da Classe Lampada.
-public class Lampada implements I_IoT, Comparable<Lampada>{
+public class Lampada implements I_Lampada, Comparable<Lampada>{
 
     private LampadaDTO lampada;
 
